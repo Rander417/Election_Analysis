@@ -1,4 +1,5 @@
-#In this project, our final Python script will need to be able to deliver the following:
+#In this project, our final Python script will need to be able to deliver the below items. 
+#They must be displayed/output in the specified format
 
 #1-Total number of votes cast
 #2-Total votes by county and the %
@@ -102,16 +103,20 @@ with open(file_to_save, "w") as txt_file:
         #Save the above to the text file
         txt_file.write(countyResults)
 
-        #Determine the county with the largest voter count
-        #if (votesPerCounty > winning_count) and (vote_percentage > winning_percentage):
-        #    largestVoteCount = county
+    #Determine the county with the largest voter count
+    largestVoteCount = max(countyVotes, key=countyVotes.get)
+    
 
-    txt_file.write("\n-------------------------\n")    
-    print("\n-------------------------")
-    print("Largest County Turnout:"f" TEST")
-    txt_file.write("Largest County Turnout:"f" TEST")
-    txt_file.write("\n-------------------------\n")
-    print("-------------------------")
+    largestVoteCountSummary = (
+        f"\n-------------------------\n"
+        f"Largest County Turnout: {largestVoteCount}"
+        f"\n-------------------------\n"
+    )
+
+    print(largestVoteCountSummary)
+    txt_file.write(largestVoteCountSummary)
+
+
     #*********************************************************************************************END For
 
     
