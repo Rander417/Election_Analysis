@@ -14,7 +14,7 @@
 import csv
 import os
 
-# --------------------------------------------------------------------check if this runs from ghithub
+# --------------------------------------------------------------------check if this runs from github
 # Assign a variable to load a file from a path.
 file_to_load = os.path.join("Resources/election_results.csv")
 
@@ -87,12 +87,39 @@ with open(file_to_save, "w") as txt_file:
     # Save the final vote count to the text file.
     txt_file.write(election_results)
 
+    #***********************************************************************************Challenge instruction #6
+    print("\n")
+    print("County Votes:")
+    txt_file.write("\nCounty Votes:\n")
+    for county in countyVotes:
+        votesPerCounty = countyVotes[county]
+        countyPercentage =float(votesPerCounty) / float(total_votes) * 100
+        countyResults = (f"{county}: {countyPercentage:.1f}% ({votesPerCounty:,})\n")
+
+        #Print each county's voter count and percentage to the terminal
+        print(countyResults)
+
+        #Save the above to the text file
+        txt_file.write(countyResults)
+
+        #Determine the county with the largest voter count
+        #if (votesPerCounty > winning_count) and (vote_percentage > winning_percentage):
+        #    largestVoteCount = county
+
+    txt_file.write("\n-------------------------\n")    
+    print("\n-------------------------")
+    print("Largest County Turnout:"f" TEST")
+    txt_file.write("Largest County Turnout:"f" TEST")
+    txt_file.write("\n-------------------------\n")
+    print("-------------------------")
+    #*********************************************************************************************END For
+
     
     for candidate in candidate_votes:
         # Retrieve vote count and percentage.
         votesPerCandidate = candidate_votes[candidate]
         vote_percentage = float(votesPerCandidate) / float(total_votes) * 100
-        candidate_results = (f"{candidate}: {vote_percentage:.1f}% ({votesPerCandidate:,})")
+        candidate_results = (f"{candidate}: {vote_percentage:.1f}% ({votesPerCandidate:,})\n")
 
         # Print each candidate's voter count and percentage to the terminal.
         print(candidate_results)
@@ -105,28 +132,10 @@ with open(file_to_save, "w") as txt_file:
             winning_count = votesPerCandidate
             winning_candidate = candidate
             winning_percentage = vote_percentage
-    print("-------------------------")
+    
     #*********************************************************************************************END For
 
 
-    #***********************************************************************************Challenge instruction #6
-    print("County Votes:")
-    for county in countyVotes:
-        votesPerCounty = countyVotes[county]
-        countyPercentage =float(votesPerCounty) / float(total_votes) * 100
-        countyResults = ( f"{county}: {countyPercentage:.1f}% ({votesPerCounty:,})")
-
-        #Print each county's voter count and percentage to the terminal
-        print(countyResults)
-
-        #Save the above to the text file
-        txt_file.write(countyResults)
-
-        #Determine the county with the largest voter count
-        
-    print("-------------------------/n")
-
-    #*********************************************************************************************END For
 
     # Print the winning candidate's results to the terminal.
     winning_candidate_summary = (
